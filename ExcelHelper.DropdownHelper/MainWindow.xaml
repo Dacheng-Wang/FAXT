@@ -1,0 +1,59 @@
+﻿<Window x:Class="ExcelHelper.DropdownHelper.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExcelHelper.DropdownHelper"
+        mc:Ignorable="d"
+        Title="Helper" Name="HelperWindow" Height="75" Width="225" Loaded="Window_Loaded" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ComboBox Name="SearchBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" IsEditable="True" Height="20"/>
+        <Button HorizontalAlignment="Left" Margin="134,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Input selected item in active cell.">
+            <Image Source="input.png"></Image>
+        </Button>
+        <Button HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Clear the search box.">
+            <Image Source="clear.png"></Image>
+        </Button>
+        <ToggleButton Width="20" HorizontalAlignment="Left" Height="20" ToolTip="View/Hide the Options Menu." Margin="185,10,0,0" VerticalAlignment="Top">
+            <Image Source="expand.png"></Image>
+            <ToggleButton.Triggers>
+                <EventTrigger RoutedEvent="ToggleButton.Checked">
+                    <BeginStoryboard>
+                        <Storyboard Duration="0:0:0">
+                            <DoubleAnimation From="300" To="300"   
+                                             Storyboard.TargetName="HelperWindow"   
+                                             Storyboard.TargetProperty="Width" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                    <BeginStoryboard>
+                        <Storyboard Duration="0:0:0">
+                            <DoubleAnimation From="225" To="225"   
+                                             Storyboard.TargetName="HelperWindow"   
+                                             Storyboard.TargetProperty="Width" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </ToggleButton.Triggers>
+        </ToggleButton>
+        <Button HorizontalAlignment="Left" Margin="210,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Sort the list in ascending order.">
+            <Image Source="sortAZ.png"></Image>
+        </Button>
+        <Button HorizontalAlignment="Left" Margin="235,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Sort the list in descending order.">
+            <Image Source="sortZA.png"></Image>
+        </Button>
+        <ToggleButton HorizontalAlignment="Left" Margin="260,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Auto Open the List Seach window when a cell that contains validation is selected.">
+            <Image Source="automation.png"></Image>
+            <ToggleButton.Triggers>
+                <EventTrigger RoutedEvent="ToggleButton.Checked">
+                </EventTrigger>
+                <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                </EventTrigger>
+            </ToggleButton.Triggers>
+        </ToggleButton>
+    </Grid>
+</Window>

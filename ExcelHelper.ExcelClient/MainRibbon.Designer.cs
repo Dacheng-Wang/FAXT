@@ -34,39 +34,53 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tab1 = this.Factory.CreateRibbonTab();
-            this.group1 = this.Factory.CreateRibbonGroup();
-            this.tab1.SuspendLayout();
+            this.tabMain = this.Factory.CreateRibbonTab();
+            this.btnDropdownHelper = this.Factory.CreateRibbonButton();
+            this.groupDropdown = this.Factory.CreateRibbonGroup();
+            this.tabMain.SuspendLayout();
+            this.groupDropdown.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tab1
+            // tabMain
             // 
-            this.tab1.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
-            this.tab1.Groups.Add(this.group1);
-            this.tab1.Label = "TabAddIns";
-            this.tab1.Name = "tab1";
+            this.tabMain.Groups.Add(this.groupDropdown);
+            this.tabMain.Label = "Excel Helper";
+            this.tabMain.Name = "tabMain";
             // 
-            // group1
+            // btnDropdownHelper
             // 
-            this.group1.Label = "group1";
-            this.group1.Name = "group1";
+            this.btnDropdownHelper.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.btnDropdownHelper.Label = "Dropdown Helper";
+            this.btnDropdownHelper.Name = "btnDropdownHelper";
+            this.btnDropdownHelper.OfficeImageId = "ChartQuickExplore";
+            this.btnDropdownHelper.ShowImage = true;
+            this.btnDropdownHelper.Click += btnDropdownHelper_Click;
+            // 
+            // groupDropdown
+            // 
+            this.groupDropdown.Items.Add(this.btnDropdownHelper);
+            this.groupDropdown.Label = "Dropdown Helper";
+            this.groupDropdown.Name = "groupDropdown";
             // 
             // MainRibbon
             // 
             this.Name = "MainRibbon";
             this.RibbonType = "Microsoft.Excel.Workbook";
-            this.Tabs.Add(this.tab1);
+            this.Tabs.Add(this.tabMain);
             this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.MainRibbon_Load);
-            this.tab1.ResumeLayout(false);
-            this.tab1.PerformLayout();
+            this.tabMain.ResumeLayout(false);
+            this.tabMain.PerformLayout();
+            this.groupDropdown.ResumeLayout(false);
+            this.groupDropdown.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonTab tabMain;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup groupDropdown;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnDropdownHelper;
     }
 
     partial class ThisRibbonCollection
