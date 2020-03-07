@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelHelper.ExcelClient", "ExcelHelper.ExcelClient\ExcelHelper.ExcelClient.csproj", "{3DDE377E-EBAE-4A33-B762-12C685C1153B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DDE377E-EBAE-4A33-B762-12C685C1153B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DDE377E-EBAE-4A33-B762-12C685C1153B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DDE377E-EBAE-4A33-B762-12C685C1153B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DDE377E-EBAE-4A33-B762-12C685C1153B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D56B0806-7B10-47A5-BF0B-B55F56FB5DF9}
+	EndGlobalSection
+EndGlobal
