@@ -10,14 +10,14 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ComboBox Name="SearchBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" IsEditable="True" Height="20"/>
+        <ComboBox Name="SearchBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEditable="True"/>
         <Button HorizontalAlignment="Left" Margin="134,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Input selected item in active cell." Click="btnFill">
             <Image Source="input.png"></Image>
         </Button>
         <Button HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Clear the search box." Click="btnClear">
             <Image Source="clear.png"></Image>
         </Button>
-        <ToggleButton Width="20" HorizontalAlignment="Left" Height="20" ToolTip="View/Hide the Options Menu." Margin="185,10,0,0" VerticalAlignment="Top">
+        <ToggleButton Name="ExpandToggle" Width="20" HorizontalAlignment="Left" Height="20" ToolTip="View/Hide the Options Menu." Margin="185,10,0,0" VerticalAlignment="Top">
             <Image Source="expand.png"></Image>
             <ToggleButton.Triggers>
                 <EventTrigger RoutedEvent="ToggleButton.Checked">

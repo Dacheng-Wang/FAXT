@@ -19,54 +19,90 @@ namespace ExcelHelper.DropdownHelper
         private Xl.Workbook activeWb;
         private Xl.Worksheet activeWs;
         private Xl.Range activeRange;
-        public List<string> validationList;
+        private List<string> validationList;
+        private MainWindow mainWindow;
+        private bool isAuto = false;
+        private bool previousValidation = false;
+        private bool currentValidation = false;
         public MainWindow(Xl.Application excelApp)
         {
-            if (IsWindowOpen<Window>("HelperWindow"))
-            {
-                this.Close();
-            }
-            else
-            {
-                InitializeComponent();
-                activeApp = excelApp;
-                RefreshActive();
-                activeWs.SelectionChange += new Microsoft.Office.Interop.Excel.DocEvents_SelectionChangeEventHandler(SelectionChange);
-                validationList = ReadDropDownValues(activeWb, activeRange);
-                SearchBox.ItemsSource = validationList;
-            }
+            InitializeComponent();
+            activeApp = excelApp;
+            RefreshActive();
+            validationList = ReadDropDownValues(activeWb, activeRange);
+            SearchBox.ItemsSource = validationList;
         }
-        void SelectionChange(Xl.Range Target)
+        public void SelectionChange(Xl.Range Target)
         {
             RefreshActive();
             validationList = ReadDropDownValues(activeWb, activeRange);
-            this.Dispatcher.BeginInvoke(new Action(() =>
+            string formulaRange;
+            
+            try
             {
-                SearchBox.ItemsSource = validationList;
-            }), DispatcherPriority.Background);
-            //Check if the auto start/close toggle is on
-            this.Dispatcher.BeginInvoke(new Action(() =>
+                previousValidation = currentValidation;
+                formulaRange = activeApp.Selection.Validation.Formula1;
+                currentValidation = true;
+                currentValidation = true;
+            }
+            catch (COMException e)
             {
-                if ((bool)AutoToggle.IsChecked)
+                currentValidation = false;
+            }
+            if (mainWindow != null)
+            {
+                AutoWindow(mainWindow);
+            }
+            else
+            {
+                AutoWindow(this);
+            }
+        }
+        private void AutoWindow(MainWindow window)
+        {
+            window.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                isAuto = (bool)window.AutoToggle.IsChecked;
+                window.SearchBox.ItemsSource = validationList;
+                if (isAuto)
                 {
-                    string formulaRange;
-                    try
+                    if (currentValidation && !previousValidation)
                     {
-                        formulaRange = activeApp.Selection.Validation.Formula1;
-                        this.Show();
-                        Keyboard.Focus(this.SearchBox);
+                        window.Close();
                     }
-                    catch (COMException e)
-                    {
-                        this.Hide();
-                    }
+                    else if (!currentValidation)  window.Hide();
                 }
-            }),DispatcherPriority.Background);
+            }), DispatcherPriority.Background);
+            if (isAuto && currentValidation && !previousValidation) StartNewWindow(activeApp);
+        }
+        public void StartNewWindow(Xl.Application activeApp)
+        {
+            var thread = new Thread(() =>
+            {
+                mainWindow = new MainWindow(activeApp);
+                mainWindow.Show();
+                mainWindow.AutoToggle.IsChecked = isAuto;
+                mainWindow.Topmost = true;
+                mainWindow.Closed += (sender2, e2) => mainWindow.Dispatcher.InvokeShutdown();
+                Dispatcher.Run();
+            });
+
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
         }
         void WindowActivated(object sender, EventArgs e)
         {
             RefreshActive();
-            activeWs.SelectionChange += new Microsoft.Office.Interop.Excel.DocEvents_SelectionChangeEventHandler(SelectionChange);
+            if (mainWindow == null)
+            {
+                this.SearchBox.ConvertNormalCBToAutoComplete();
+                this.SearchBox.IsDropDownOpen = true;
+            }
+            else
+            {
+                mainWindow.SearchBox.ConvertNormalCBToAutoComplete();
+                mainWindow.SearchBox.IsDropDownOpen = true;
+            }
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -181,19 +217,5 @@ namespace ExcelHelper.DropdownHelper
                 SearchBox.ItemsSource = validationList;
             }), DispatcherPriority.Background);
         }
-        public static bool IsWindowOpen<T>(string name = "") where T : Window
-        {
-            try
-            {
-                return string.IsNullOrEmpty(name)
-               ? Application.Current.Windows.OfType<T>().Any()
-               : Application.Current.Windows.OfType<T>().Any(w => w.Name.Equals(name));
-            }
-            catch (NullReferenceException e)
-            {
-                return false;
-            }
-        }
-
     }
 }

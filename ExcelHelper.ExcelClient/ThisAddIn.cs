@@ -17,6 +17,8 @@ namespace ExcelHelper.ExcelClient
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {
+            //Added this line to make sure WPF won't still be running when it's opened while Excel getting closed.
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(Globals.ThisAddIn.Application);
         }
 
         #region VSTO generated code

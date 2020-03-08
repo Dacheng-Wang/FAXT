@@ -5,6 +5,7 @@ using System.Threading;
 using System.Windows.Threading;
 using System.IO;
 using Xl = Microsoft.Office.Interop.Excel;
+using System.Windows.Forms;
 
 namespace ExcelHelper.ExcelClient
 {
@@ -23,35 +24,17 @@ namespace ExcelHelper.ExcelClient
         }
         private void btnDropdownHelper_Click(object sender, RibbonControlEventArgs e)
         {
+            mainWindow = new MainWindow(Globals.ThisAddIn.Application);
+
+            Globals.ThisAddIn.Application.ActiveSheet.SelectionChange += new Xl.DocEvents_SelectionChangeEventHandler(mainWindow.SelectionChange);
             if (mainWindow == null)
             {
-                var thread = new Thread(() =>
-                {
-                    mainWindow = new MainWindow(Globals.ThisAddIn.Application);
-                    mainWindow.Show();
-                    mainWindow.Topmost = true;
-                    mainWindow.Closed += (sender2, e2) => mainWindow.Dispatcher.InvokeShutdown();
-
-                    Dispatcher.Run();
-                });
-
-                thread.SetApartmentState(ApartmentState.STA);
-                thread.Start();
+                mainWindow.StartNewWindow(Globals.ThisAddIn.Application);
             }
             else
             {
-                mainWindow.Dispatcher.BeginInvoke((Action)mainWindow.Close);
-                var thread = new Thread(() =>
-                {
-                    mainWindow = new MainWindow(Globals.ThisAddIn.Application);
-                    mainWindow.Show();
-                    mainWindow.Topmost = true;
-                    mainWindow.Closed += (sender2, e2) => mainWindow.Dispatcher.InvokeShutdown();
-                    Dispatcher.Run();
-                });
-                    
-                thread.SetApartmentState(ApartmentState.STA);
-                thread.Start();
+                mainWindow.Close();
+                mainWindow.StartNewWindow(Globals.ThisAddIn.Application);
             }
         }
     }
