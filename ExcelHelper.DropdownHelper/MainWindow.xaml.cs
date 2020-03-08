@@ -5,6 +5,8 @@ using System.Windows;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.Windows.Threading;
+using System.Threading;
 
 namespace ExcelHelper.DropdownHelper
 {
@@ -20,21 +22,46 @@ namespace ExcelHelper.DropdownHelper
         public List<string> validationList;
         public MainWindow(Xl.Application excelApp)
         {
-            InitializeComponent();
-            activeApp = excelApp;
-            RefreshActive();
-            activeWs.SelectionChange += new Microsoft.Office.Interop.Excel.DocEvents_SelectionChangeEventHandler(SelectionChange);
-            validationList = ReadDropDownValues(activeWb, activeRange);
-            SearchBox.ItemsSource = validationList;
+            if (IsWindowOpen<Window>("HelperWindow"))
+            {
+                this.Close();
+            }
+            else
+            {
+                InitializeComponent();
+                activeApp = excelApp;
+                RefreshActive();
+                activeWs.SelectionChange += new Microsoft.Office.Interop.Excel.DocEvents_SelectionChangeEventHandler(SelectionChange);
+                validationList = ReadDropDownValues(activeWb, activeRange);
+                SearchBox.ItemsSource = validationList;
+            }
         }
         void SelectionChange(Xl.Range Target)
         {
             RefreshActive();
             validationList = ReadDropDownValues(activeWb, activeRange);
-            this.Dispatcher.Invoke(() =>
+            this.Dispatcher.BeginInvoke(new Action(() =>
             {
                 SearchBox.ItemsSource = validationList;
-            });
+            }), DispatcherPriority.Background);
+            //Check if the auto start/close toggle is on
+            this.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                if ((bool)AutoToggle.IsChecked)
+                {
+                    string formulaRange;
+                    try
+                    {
+                        formulaRange = activeApp.Selection.Validation.Formula1;
+                        this.Show();
+                        Keyboard.Focus(this.SearchBox);
+                    }
+                    catch (COMException e)
+                    {
+                        this.Hide();
+                    }
+                }
+            }),DispatcherPriority.Background);
         }
         void WindowActivated(object sender, EventArgs e)
         {
@@ -49,6 +76,13 @@ namespace ExcelHelper.DropdownHelper
         {
             RefreshActive();
             activeRange.Value2 = SearchBox.Text;
+            if (DirectionBox.SelectedItem != null)
+            {
+                if (DirectionBox.Text == "Down") activeRange.Offset[1].Select();
+                if (DirectionBox.Text == "Up") activeRange.Offset[-1].Select();
+                if (DirectionBox.Text == "Right") activeRange.Offset[0, 1].Select();
+                if (DirectionBox.Text == "Left") activeRange.Offset[0, -1].Select();
+            } 
         }
         private void RefreshActive()
         {
@@ -122,5 +156,44 @@ namespace ExcelHelper.DropdownHelper
             }
             return result;
         }
+        private void btnClear(object sender, RoutedEventArgs e)
+        {
+            SearchBox.Text="";
+        }
+        private void btnSortAZ(object sender, RoutedEventArgs e)
+        {
+            RefreshActive();
+            validationList = ReadDropDownValues(activeWb, activeRange);
+            validationList.Sort();
+            this.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                SearchBox.ItemsSource = validationList;
+            }), DispatcherPriority.Background);
+        }
+        private void btnSortZA(object sender, RoutedEventArgs e)
+        {
+            RefreshActive();
+            validationList = ReadDropDownValues(activeWb, activeRange);
+            validationList.Sort();
+            validationList.Reverse();
+            this.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                SearchBox.ItemsSource = validationList;
+            }), DispatcherPriority.Background);
+        }
+        public static bool IsWindowOpen<T>(string name = "") where T : Window
+        {
+            try
+            {
+                return string.IsNullOrEmpty(name)
+               ? Application.Current.Windows.OfType<T>().Any()
+               : Application.Current.Windows.OfType<T>().Any(w => w.Name.Equals(name));
+            }
+            catch (NullReferenceException e)
+            {
+                return false;
+            }
+        }
+
     }
 }

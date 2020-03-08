@@ -14,7 +14,7 @@
         <Button HorizontalAlignment="Left" Margin="134,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Input selected item in active cell." Click="btnFill">
             <Image Source="input.png"></Image>
         </Button>
-        <Button HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Clear the search box.">
+        <Button HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Clear the search box." Click="btnClear">
             <Image Source="clear.png"></Image>
         </Button>
         <ToggleButton Width="20" HorizontalAlignment="Left" Height="20" ToolTip="View/Hide the Options Menu." Margin="185,10,0,0" VerticalAlignment="Top">
@@ -40,13 +40,13 @@
                 </EventTrigger>
             </ToggleButton.Triggers>
         </ToggleButton>
-        <Button HorizontalAlignment="Left" Margin="210,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Sort the list in ascending order.">
+        <Button HorizontalAlignment="Left" Margin="210,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Sort the list in ascending order." Click="btnSortAZ">
             <Image Source="sortAZ.png"></Image>
         </Button>
-        <Button HorizontalAlignment="Left" Margin="235,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Sort the list in descending order.">
+        <Button HorizontalAlignment="Left" Margin="235,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Sort the list in descending order." Click="btnSortZA">
             <Image Source="sortZA.png"></Image>
         </Button>
-        <ToggleButton HorizontalAlignment="Left" Margin="260,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Auto open the List Seach window when a cell that contains validation is selected.">
+        <ToggleButton Name="AutoToggle" x:FieldModifier="public" HorizontalAlignment="Left" Margin="260,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Auto open/close the List Seach window when a cell that contains validation is selected.">
             <Image Source="automation.png"></Image>
             <ToggleButton.Triggers>
                 <EventTrigger RoutedEvent="ToggleButton.Checked">
@@ -55,7 +55,7 @@
                 </EventTrigger>
             </ToggleButton.Triggers>
         </ToggleButton>
-        <ComboBox HorizontalAlignment="Left" Margin="285,10,0,0" VerticalAlignment="Top" Width="60" Height="20" ToolTip="Select the direction of the cell after input." IsReadOnly="True">
+        <ComboBox Name="DirectionBox" HorizontalAlignment="Left" Margin="285,10,0,0" VerticalAlignment="Top" Width="60" Height="20" ToolTip="Select the direction of the cell after input." IsReadOnly="True">
             <ComboBoxItem Content="Down"/>
             <ComboBoxItem Content="Right"/>
             <ComboBoxItem Content="Up"/>

@@ -10,8 +10,8 @@ namespace ExcelHelper.ExcelClient
 {
     public partial class MainRibbon
     {
-        private Xl.Application ActiveApp;
         private string _appSettingsPath = null;
+        private MainWindow mainWindow;
         private void MainRibbon_Load(object sender, RibbonUIEventArgs e)
         {
             _appSettingsPath = Directory.CreateDirectory(
@@ -23,19 +23,36 @@ namespace ExcelHelper.ExcelClient
         }
         private void btnDropdownHelper_Click(object sender, RibbonControlEventArgs e)
         {
-            ActiveApp = Globals.ThisAddIn.Application;
-            var thread = new Thread(() =>
+            if (mainWindow == null)
             {
-                MainWindow mainWindow = new MainWindow(ActiveApp);
-                mainWindow.Show();
-                mainWindow.Topmost = true;
-                mainWindow.Closed += (sender2, e2) => mainWindow.Dispatcher.InvokeShutdown();
+                var thread = new Thread(() =>
+                {
+                    mainWindow = new MainWindow(Globals.ThisAddIn.Application);
+                    mainWindow.Show();
+                    mainWindow.Topmost = true;
+                    mainWindow.Closed += (sender2, e2) => mainWindow.Dispatcher.InvokeShutdown();
 
-                Dispatcher.Run();
-            });
-            
-            thread.SetApartmentState(ApartmentState.STA);
-            thread.Start();
+                    Dispatcher.Run();
+                });
+
+                thread.SetApartmentState(ApartmentState.STA);
+                thread.Start();
+            }
+            else
+            {
+                mainWindow.Dispatcher.BeginInvoke((Action)mainWindow.Close);
+                var thread = new Thread(() =>
+                {
+                    mainWindow = new MainWindow(Globals.ThisAddIn.Application);
+                    mainWindow.Show();
+                    mainWindow.Topmost = true;
+                    mainWindow.Closed += (sender2, e2) => mainWindow.Dispatcher.InvokeShutdown();
+                    Dispatcher.Run();
+                });
+                    
+                thread.SetApartmentState(ApartmentState.STA);
+                thread.Start();
+            }
         }
     }
 }
