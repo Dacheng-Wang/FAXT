@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExcelHelper.DropdownHelper"
         mc:Ignorable="d"
-        Title="Helper" Name="HelperWindow" Height="75" Width="225" Loaded="Window_Loaded" ResizeMode="NoResize">
+        Title="Helper" Name="HelperWindow" Height="75" Width="225" Loaded="Window_Loaded" ResizeMode="NoResize" Activated="WindowActivated">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <ComboBox Name="SearchBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" IsEditable="True" Height="20"/>
-        <Button HorizontalAlignment="Left" Margin="134,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Input selected item in active cell.">
+        <Button HorizontalAlignment="Left" Margin="134,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Input selected item in active cell." Click="btnFill">
             <Image Source="input.png"></Image>
         </Button>
         <Button HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Clear the search box.">
@@ -23,7 +23,7 @@
                 <EventTrigger RoutedEvent="ToggleButton.Checked">
                     <BeginStoryboard>
                         <Storyboard Duration="0:0:0">
-                            <DoubleAnimation From="300" To="300"   
+                            <DoubleAnimation From="365" To="365"   
                                              Storyboard.TargetName="HelperWindow"   
                                              Storyboard.TargetProperty="Width" />
                         </Storyboard>
@@ -46,7 +46,7 @@
         <Button HorizontalAlignment="Left" Margin="235,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Sort the list in descending order.">
             <Image Source="sortZA.png"></Image>
         </Button>
-        <ToggleButton HorizontalAlignment="Left" Margin="260,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Auto Open the List Seach window when a cell that contains validation is selected.">
+        <ToggleButton HorizontalAlignment="Left" Margin="260,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Auto open the List Seach window when a cell that contains validation is selected.">
             <Image Source="automation.png"></Image>
             <ToggleButton.Triggers>
                 <EventTrigger RoutedEvent="ToggleButton.Checked">
@@ -55,5 +55,12 @@
                 </EventTrigger>
             </ToggleButton.Triggers>
         </ToggleButton>
+        <ComboBox HorizontalAlignment="Left" Margin="285,10,0,0" VerticalAlignment="Top" Width="60" Height="20" ToolTip="Select the direction of the cell after input." IsReadOnly="True">
+            <ComboBoxItem Content="Down"/>
+            <ComboBoxItem Content="Right"/>
+            <ComboBoxItem Content="Up"/>
+            <ComboBoxItem Content="Left"/>
+            <ComboBoxItem Content="Stay"/>
+        </ComboBox>
     </Grid>
 </Window>

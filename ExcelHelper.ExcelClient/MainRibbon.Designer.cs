@@ -35,8 +35,8 @@
         private void InitializeComponent()
         {
             this.tabMain = this.Factory.CreateRibbonTab();
-            this.btnDropdownHelper = this.Factory.CreateRibbonButton();
             this.groupDropdown = this.Factory.CreateRibbonGroup();
+            this.btnDropdownHelper = this.Factory.CreateRibbonButton();
             this.tabMain.SuspendLayout();
             this.groupDropdown.SuspendLayout();
             this.SuspendLayout();
@@ -47,6 +47,12 @@
             this.tabMain.Label = "Excel Helper";
             this.tabMain.Name = "tabMain";
             // 
+            // groupDropdown
+            // 
+            this.groupDropdown.Items.Add(this.btnDropdownHelper);
+            this.groupDropdown.Label = "Dropdown Helper";
+            this.groupDropdown.Name = "groupDropdown";
+            // 
             // btnDropdownHelper
             // 
             this.btnDropdownHelper.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
@@ -55,12 +61,6 @@
             this.btnDropdownHelper.OfficeImageId = "ChartQuickExplore";
             this.btnDropdownHelper.ShowImage = true;
             this.btnDropdownHelper.Click += btnDropdownHelper_Click;
-            // 
-            // groupDropdown
-            // 
-            this.groupDropdown.Items.Add(this.btnDropdownHelper);
-            this.groupDropdown.Label = "Dropdown Helper";
-            this.groupDropdown.Name = "groupDropdown";
             // 
             // MainRibbon
             // 
