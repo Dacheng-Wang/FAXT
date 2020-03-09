@@ -35,23 +35,31 @@
         private void InitializeComponent()
         {
             this.tabMain = this.Factory.CreateRibbonTab();
-            this.groupDropdown = this.Factory.CreateRibbonGroup();
+            this.groupInput = this.Factory.CreateRibbonGroup();
             this.btnDropdownHelper = this.Factory.CreateRibbonButton();
+            this.groupImport = this.Factory.CreateRibbonGroup();
+            this.btnXML = this.Factory.CreateRibbonButton();
+            this.groupHelp = this.Factory.CreateRibbonGroup();
+            this.btnHelp = this.Factory.CreateRibbonButton();
             this.tabMain.SuspendLayout();
-            this.groupDropdown.SuspendLayout();
+            this.groupInput.SuspendLayout();
+            this.groupImport.SuspendLayout();
+            this.groupHelp.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMain
             // 
-            this.tabMain.Groups.Add(this.groupDropdown);
+            this.tabMain.Groups.Add(this.groupInput);
+            this.tabMain.Groups.Add(this.groupImport);
+            this.tabMain.Groups.Add(this.groupHelp);
             this.tabMain.Label = "Excel Helper";
             this.tabMain.Name = "tabMain";
             // 
-            // groupDropdown
+            // groupInput
             // 
-            this.groupDropdown.Items.Add(this.btnDropdownHelper);
-            this.groupDropdown.Label = "Dropdown Helper";
-            this.groupDropdown.Name = "groupDropdown";
+            this.groupInput.Items.Add(this.btnDropdownHelper);
+            this.groupInput.Label = "Data Input";
+            this.groupInput.Name = "groupInput";
             // 
             // btnDropdownHelper
             // 
@@ -62,6 +70,35 @@
             this.btnDropdownHelper.ShowImage = true;
             this.btnDropdownHelper.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnDropdownHelper_Click);
             // 
+            // groupImport
+            // 
+            this.groupImport.Items.Add(this.btnXML);
+            this.groupImport.Label = "Data Import";
+            this.groupImport.Name = "groupImport";
+            // 
+            // btnXML
+            // 
+            this.btnXML.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.btnXML.Label = "XML Importer";
+            this.btnXML.Name = "btnXML";
+            this.btnXML.OfficeImageId = "ImportXmlFile";
+            this.btnXML.ShowImage = true;
+            // 
+            // groupHelp
+            // 
+            this.groupHelp.Items.Add(this.btnHelp);
+            this.groupHelp.Label = "Help";
+            this.groupHelp.Name = "groupHelp";
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.btnHelp.Label = "Help";
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.OfficeImageId = "Help";
+            this.btnHelp.ShowImage = true;
+            this.btnHelp.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnHelp_Click);
+            // 
             // MainRibbon
             // 
             this.Name = "MainRibbon";
@@ -70,8 +107,12 @@
             this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.MainRibbon_Load);
             this.tabMain.ResumeLayout(false);
             this.tabMain.PerformLayout();
-            this.groupDropdown.ResumeLayout(false);
-            this.groupDropdown.PerformLayout();
+            this.groupInput.ResumeLayout(false);
+            this.groupInput.PerformLayout();
+            this.groupImport.ResumeLayout(false);
+            this.groupImport.PerformLayout();
+            this.groupHelp.ResumeLayout(false);
+            this.groupHelp.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -79,8 +120,12 @@
         #endregion
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tabMain;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup groupDropdown;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup groupInput;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnDropdownHelper;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup groupImport;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnXML;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup groupHelp;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnHelp;
     }
 
     partial class ThisRibbonCollection

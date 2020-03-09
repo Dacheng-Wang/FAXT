@@ -205,6 +205,10 @@
       <Project>{ed3ca9ed-7aa4-4669-9b79-bff7ffc27972}</Project>
       <Name>ExcelHelper.DropdownHelper</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ExcelHelper.Help\ExcelHelper.Help.csproj">
+      <Project>{ed3ee163-1f41-4e03-8704-0a1e060d223f}</Project>
+      <Name>ExcelHelper.Help</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
