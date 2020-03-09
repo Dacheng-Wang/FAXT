@@ -157,6 +157,7 @@ namespace ExcelHelper.DropdownHelper
                         if (formulaRange.Contains("!"))
                         {
                             string[] formulaRangeWorkSheetAndCells = formulaRange.Substring(1, formulaRange.Length - 1).Split('!');
+                            if (formulaRangeWorkSheetAndCells[0].Substring(0, 1) == "'") formulaRangeWorkSheetAndCells[0] = formulaRangeWorkSheetAndCells[0].Substring(1, formulaRangeWorkSheetAndCells[0].Length - 2);
                             splitFormulaRange = formulaRangeWorkSheetAndCells[1].Split(':');
                             xlWorkSheet = xlWorkBook.Worksheets.get_Item(formulaRangeWorkSheetAndCells[0]);
                         }
