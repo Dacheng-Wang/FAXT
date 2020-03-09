@@ -10,8 +10,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ComboBox Name="SearchBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEditable="True"/>
-        <Button HorizontalAlignment="Left" Margin="134,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Input selected item in active cell." Click="btnFill">
+        <ComboBox Name="SearchBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEditable="True" KeyUp="SearchBox_KeyUp"/>
+        <Button HorizontalAlignment="Left" Margin="134,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Input selected item in active cell." Click="btnFill" IsDefault="True">
             <Image Source="input.png"></Image>
         </Button>
         <Button HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" Width="20" Height="20" ToolTip="Clear the search box." Click="btnClear">

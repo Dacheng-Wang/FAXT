@@ -7,6 +7,7 @@ using System.Linq;
 using System;
 using System.Windows.Threading;
 using System.Threading;
+using System.Windows.Controls;
 
 namespace ExcelHelper.DropdownHelper
 {
@@ -111,14 +112,20 @@ namespace ExcelHelper.DropdownHelper
         private void btnFill(object sender, RoutedEventArgs e)
         {
             RefreshActive();
-            activeRange.Value2 = SearchBox.Text;
-            if (DirectionBox.SelectedItem != null)
+            if (SearchBox.Items.Contains(SearchBox.Text))
             {
-                if (DirectionBox.Text == "Down") activeRange.Offset[1].Select();
-                if (DirectionBox.Text == "Up") activeRange.Offset[-1].Select();
-                if (DirectionBox.Text == "Right") activeRange.Offset[0, 1].Select();
-                if (DirectionBox.Text == "Left") activeRange.Offset[0, -1].Select();
-            } 
+                activeRange.Value2 = SearchBox.Text;
+                if (DirectionBox.SelectedItem != null)
+                {
+                    if (DirectionBox.Text == "Down") activeRange.Offset[1].Select();
+                    if (DirectionBox.Text == "Up") activeRange.Offset[-1].Select();
+                    if (DirectionBox.Text == "Right") activeRange.Offset[0, 1].Select();
+                    if (DirectionBox.Text == "Left") activeRange.Offset[0, -1].Select();
+                }
+            }
+            else MessageBox.Show("Invalid Input.", "Error");
+            SearchBox.IsDropDownOpen = true;
+            Keyboard.Focus(SearchBox);
         }
         private void RefreshActive()
         {
@@ -216,6 +223,13 @@ namespace ExcelHelper.DropdownHelper
             {
                 SearchBox.ItemsSource = validationList;
             }), DispatcherPriority.Background);
+        }
+        private void SearchBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Equals(Key.Enter))
+            {
+                btnFill(sender, e);
+            }
         }
     }
 }

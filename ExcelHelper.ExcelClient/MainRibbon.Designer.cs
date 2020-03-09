@@ -60,7 +60,7 @@
             this.btnDropdownHelper.Name = "btnDropdownHelper";
             this.btnDropdownHelper.OfficeImageId = "ChartQuickExplore";
             this.btnDropdownHelper.ShowImage = true;
-            this.btnDropdownHelper.Click += btnDropdownHelper_Click;
+            this.btnDropdownHelper.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnDropdownHelper_Click);
             // 
             // MainRibbon
             // 

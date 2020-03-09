@@ -54,7 +54,9 @@ namespace ExcelHelper.DropdownHelper
                     }
                     else
                         targetComboBox.Items.Filter = item =>
-                                item.ToString().Contains(searchText);
+                                CultureInfo.InvariantCulture.CompareInfo.IndexOf(item.ToString(), searchText, CompareOptions.IgnoreCase) >= 0;
+                                //Back up code here in case we want to add a case sensitivity toggle
+                                //item.ToString().Contains(searchText);
                                 //Back up code here if we want to build a StartWith/Contains toggle
                                 //item.ToString().StartsWith(searchText, true, CultureInfo.InvariantCulture);
 
