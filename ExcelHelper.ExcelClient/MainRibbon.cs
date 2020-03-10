@@ -7,6 +7,7 @@ using System.IO;
 using Xl = Microsoft.Office.Interop.Excel;
 using System.Windows.Forms;
 using Help = ExcelHelper.Help;
+using Xml = ExcelHelper.XMLImporter;
 
 namespace ExcelHelper.ExcelClient
 {
@@ -37,6 +38,11 @@ namespace ExcelHelper.ExcelClient
                 dhMainWindow.Close();
                 dhMainWindow.StartNewWindow(Globals.ThisAddIn.Application);
             }
+        }
+        private void btnXMLImporter_Click(object sender, RibbonControlEventArgs e)
+        {
+            Xml.MainWindow xmlWindow = new Xml.MainWindow();
+            xmlWindow.Show();
         }
         private void btnHelp_Click(object sender, RibbonControlEventArgs e)
         {

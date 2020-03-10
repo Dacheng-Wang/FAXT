@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelHelper.DropdownHelper"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelHelper.Help", "ExcelHelper.Help\ExcelHelper.Help.csproj", "{ED3EE163-1F41-4E03-8704-0A1E060D223F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelHelper.XMLImporter", "ExcelHelper.XMLImporter\ExcelHelper.XMLImporter.csproj", "{8A1B93C8-5A2F-421E-AA1B-3479E090DC48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{ED3EE163-1F41-4E03-8704-0A1E060D223F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED3EE163-1F41-4E03-8704-0A1E060D223F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED3EE163-1F41-4E03-8704-0A1E060D223F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A1B93C8-5A2F-421E-AA1B-3479E090DC48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A1B93C8-5A2F-421E-AA1B-3479E090DC48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A1B93C8-5A2F-421E-AA1B-3479E090DC48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A1B93C8-5A2F-421E-AA1B-3479E090DC48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

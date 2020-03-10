@@ -209,6 +209,10 @@
       <Project>{ed3ee163-1f41-4e03-8704-0a1e060d223f}</Project>
       <Name>ExcelHelper.Help</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ExcelHelper.XMLImporter\ExcelHelper.XMLImporter.csproj">
+      <Project>{8a1b93c8-5a2f-421e-aa1b-3479e090dc48}</Project>
+      <Name>ExcelHelper.XMLImporter</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

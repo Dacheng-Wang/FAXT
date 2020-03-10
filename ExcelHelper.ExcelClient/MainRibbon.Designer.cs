@@ -83,6 +83,7 @@
             this.btnXML.Name = "btnXML";
             this.btnXML.OfficeImageId = "ImportXmlFile";
             this.btnXML.ShowImage = true;
+            this.btnXML.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnXMLImporter_Click);
             // 
             // groupHelp
             // 
