@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExcelHelper.XMLImporter"
         mc:Ignorable="d"
-        Title="XML Importer" Height="450" Width="800">
+        Title="XML Importer" Height="450" Width="800" Name="xMLWindow">
     <Grid>
-        <Grid Width="400" HorizontalAlignment="Left">
-            <TreeView Margin="10,10,10,10" Background="White" x:Name="treeView" SelectedItemChanged="TreeView_SelectedItemChanged"/>
+        <Grid Width="200" HorizontalAlignment="Left" Name="treeGrid">
+            <TreeView Margin="10,10,10,10" Background="White" x:Name="treeView" SelectedItemChanged="TreeView_SelectedItemChanged" FrameworkElement.SizeChanged="Window_Resize"/>
         </Grid>
-        <Grid Width="400" HorizontalAlignment="Right">
+        <Grid Width="600" HorizontalAlignment="Right" Name="previewGrid">
             <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Output Preview:" VerticalAlignment="Top" Width="90" Margin="155,10,155,0"/>
             <Button Content="Write data to sheet" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="148,0,148,10"/>
             <DataGrid Margin="10,50,10,50" Name="dataGrid"/>

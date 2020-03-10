@@ -30,7 +30,8 @@ namespace ExcelHelper.XMLImporter
                     StreamReader file = File.OpenText(fileDialog.FileName);
                     XDocument xmlDoc = XDocument.Load(file);
                     BuildTree(treeView, xmlDoc);
-
+                    xMLWindow.Topmost = true;
+                    dataGrid.FrozenColumnCount = 1;
                     //MemoryStream xmlStream = new MemoryStream();
                     //xmlDoc.Save(xmlStream);
                     //xmlStream.Position = 0;
@@ -101,6 +102,11 @@ namespace ExcelHelper.XMLImporter
             }
             return dataTable;
         }
-
+        private void Window_Resize(object sender, SizeChangedEventArgs e)
+        {
+            e.Handled = true;
+            treeGrid.Width = xMLWindow.ActualWidth / 4;
+            previewGrid.Width = xMLWindow.ActualWidth * 3 / 4;
+        }
     }
 }
