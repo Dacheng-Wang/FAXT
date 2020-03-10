@@ -50,7 +50,7 @@ namespace ExcelHelper.XMLImporter
             //XmlNodeReader nodeReader = new XmlNodeReader();
             //Crl.ItemsControl parentItem = GetSelectedTreeViewItemParent(selectedItem);
             DataTable dataTable = ReturnDataTableFromNode(selectedItem);
-            dataGrid.ItemsSource = dataTable.DefaultView;
+            if (dataTable != null) dataGrid.ItemsSource = dataTable.DefaultView;
         }
         private void BuildTree(Crl.TreeView treeView, XDocument doc)
         {
@@ -80,6 +80,7 @@ namespace ExcelHelper.XMLImporter
         private DataTable ReturnDataTableFromNode(Crl.TreeViewItem treeViewItem)
         {
             DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("Child Node");
             foreach (Crl.TreeViewItem firstLayerItem in treeViewItem.Items)
             {
                 DataRow dataRow = dataTable.NewRow();
@@ -93,9 +94,10 @@ namespace ExcelHelper.XMLImporter
                             dataRow[childItem.Header.ToString()] = grandchildItem.Header;
                         }
                     }
+                    dataRow["Child Node"] = firstLayerItem.Header;
+                    dataTable.Rows.Add(dataRow);
                 }
                 else return null;
-                dataTable.Rows.Add(dataRow);
             }
             return dataTable;
         }
