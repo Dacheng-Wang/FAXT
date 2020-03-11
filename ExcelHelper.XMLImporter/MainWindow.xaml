@@ -12,8 +12,9 @@
         </Grid>
         <Grid Width="600" HorizontalAlignment="Right" Name="previewGrid">
             <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Output Preview:" VerticalAlignment="Top" Width="90" Margin="155,10,155,0"/>
-            <Button Content="Write data to sheet" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="148,0,148,10"/>
+            <Button Content="Write preview data to cell" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,148,10"/>
             <DataGrid Margin="10,50,10,50" Name="dataGrid"/>
+            <Button Content="Write all data to cell" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="148,0,0,10"/>
         </Grid>
     </Grid>
 </Window>

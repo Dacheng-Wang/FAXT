@@ -6,8 +6,10 @@ using System.Xml.Linq;
 using System.Windows.Forms;
 using System.IO;
 using System.Data;
-using System.Xml;
 using System.Windows.Media;
+using System.Collections.Generic;
+using System.Xml.Xsl;
+using System;
 
 namespace ExcelHelper.XMLImporter
 {
@@ -16,6 +18,7 @@ namespace ExcelHelper.XMLImporter
     /// </summary>
     public partial class MainWindow : Window
     {
+        string projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName;
         public MainWindow()
         {
             InitializeComponent();
@@ -29,14 +32,13 @@ namespace ExcelHelper.XMLImporter
                 {
                     StreamReader file = File.OpenText(fileDialog.FileName);
                     XDocument xmlDoc = XDocument.Load(file);
+                    //string[,] data = LoadXMLToDataTable(xmlDoc);
+                    var myXslTrans = new XslCompiledTransform();
+                    myXslTrans.Load(Path.Combine(projectPath, "Generic.xslt"));
+                    myXslTrans.Transform(fileDialog.FileName, Path.Combine(projectPath, "result.html"));
                     BuildTree(treeView, xmlDoc);
                     xMLWindow.Topmost = true;
                     dataGrid.FrozenColumnCount = 1;
-                    //MemoryStream xmlStream = new MemoryStream();
-                    //xmlDoc.Save(xmlStream);
-                    //xmlStream.Position = 0;
-                    //DataTable newTable = new DataTable();
-                    //newTable.ReadXml(xmlStream);
 
                     //DataSet ds = new DataSet();
                     //ds.ReadXml(fileDialog.FileName);
@@ -107,6 +109,17 @@ namespace ExcelHelper.XMLImporter
             e.Handled = true;
             treeGrid.Width = xMLWindow.ActualWidth / 4;
             previewGrid.Width = xMLWindow.ActualWidth * 3 / 4;
+        }
+        private string[,] LoadXMLToDataTable(XDocument xDocument)
+        {
+            List<string> vs = new List<string>();
+            XElement xElement = xDocument.Root;
+            do
+            {
+                vs.Add(xElement.Name.ToString());
+                xElement = xElement.Descendants().ElementAt(0);
+            } while (xElement.HasElements);
+            return null;
         }
     }
 }
