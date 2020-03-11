@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Collections.Generic;
 using System.Xml.Xsl;
 using System;
+using System.Windows.Input;
 
 namespace ExcelHelper.XMLImporter
 {
@@ -21,6 +22,10 @@ namespace ExcelHelper.XMLImporter
         string projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName;
         public MainWindow()
         {
+            this.CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, this.OnCloseWindow));
+            this.CommandBindings.Add(new CommandBinding(SystemCommands.MaximizeWindowCommand, this.OnMaximizeWindow, this.OnCanResizeWindow));
+            this.CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, this.OnMinimizeWindow, this.OnCanMinimizeWindow));
+            this.CommandBindings.Add(new CommandBinding(SystemCommands.RestoreWindowCommand, this.OnRestoreWindow, this.OnCanResizeWindow));
             InitializeComponent();
             using (OpenFileDialog fileDialog = new OpenFileDialog())
             {
@@ -32,54 +37,16 @@ namespace ExcelHelper.XMLImporter
                 {
                     StreamReader file = File.OpenText(fileDialog.FileName);
                     XDocument xmlDoc = XDocument.Load(file);
-                    //string[,] data = LoadXMLToDataTable(xmlDoc);
                     var myXslTrans = new XslCompiledTransform();
                     myXslTrans.Load(Path.Combine(projectPath, "Generic.xslt"));
                     myXslTrans.Transform(fileDialog.FileName, Path.Combine(projectPath, "result.html"));
-                    BuildTree(treeView, xmlDoc);
+                    FileStream htmlFile = new FileStream(Path.Combine(projectPath, "result.html"), FileMode.Open);
+                    xmlViewer.NavigateToStream(htmlFile);
                     xMLWindow.Topmost = true;
-                    dataGrid.FrozenColumnCount = 1;
-
-                    //DataSet ds = new DataSet();
-                    //ds.ReadXml(fileDialog.FileName);
-                    //dataGrid.ItemsSource = ds.Tables["CATALOG"].DefaultView;
                 }
             }
         }
-        private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            e.Handled = true;
-            Crl.TreeViewItem selectedItem = (Crl.TreeViewItem)treeView.SelectedItem;
-            //XmlNodeReader nodeReader = new XmlNodeReader();
-            //Crl.ItemsControl parentItem = GetSelectedTreeViewItemParent(selectedItem);
-            DataTable dataTable = ReturnDataTableFromNode(selectedItem);
-            if (dataTable != null) dataGrid.ItemsSource = dataTable.DefaultView;
-        }
-        private void BuildTree(Crl.TreeView treeView, XDocument doc)
-        {
-            Crl.TreeViewItem treeNode = new Crl.TreeViewItem {Header = doc.Root.Name.LocalName};
-            treeView.Items.Add(treeNode);
-            BuildNodes(treeNode, doc.Root);
-        }
-        private void BuildNodes(Crl.TreeViewItem treeNode, XElement element)
-        {
-            foreach (XNode child in element.Nodes())
-            {
-                switch (child.NodeType)
-                {
-                    case XmlNodeType.Element:
-                        XElement childElement = child as XElement;
-                        Crl.TreeViewItem childTreeNode = new Crl.TreeViewItem {Header = childElement.Name.LocalName};
-                        treeNode.Items.Add(childTreeNode);
-                        BuildNodes(childTreeNode, childElement);
-                        break;
-                    case XmlNodeType.Text:
-                        XText childText = child as XText;
-                        treeNode.Items.Add(new Crl.TreeViewItem {Header = childText.Value});
-                        break;
-                }
-            }
-        }
+        
         private DataTable ReturnDataTableFromNode(Crl.TreeViewItem treeViewItem)
         {
             DataTable dataTable = new DataTable();
@@ -104,22 +71,34 @@ namespace ExcelHelper.XMLImporter
             }
             return dataTable;
         }
-        private void Window_Resize(object sender, SizeChangedEventArgs e)
+        private void OnCanResizeWindow(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.Handled = true;
-            treeGrid.Width = xMLWindow.ActualWidth / 4;
-            previewGrid.Width = xMLWindow.ActualWidth * 3 / 4;
+            e.CanExecute = this.ResizeMode == ResizeMode.CanResize || this.ResizeMode == ResizeMode.CanResizeWithGrip;
         }
-        private string[,] LoadXMLToDataTable(XDocument xDocument)
+
+        private void OnCanMinimizeWindow(object sender, CanExecuteRoutedEventArgs e)
         {
-            List<string> vs = new List<string>();
-            XElement xElement = xDocument.Root;
-            do
-            {
-                vs.Add(xElement.Name.ToString());
-                xElement = xElement.Descendants().ElementAt(0);
-            } while (xElement.HasElements);
-            return null;
+            e.CanExecute = this.ResizeMode != ResizeMode.NoResize;
+        }
+
+        private void OnCloseWindow(object target, ExecutedRoutedEventArgs e)
+        {
+            SystemCommands.CloseWindow(this);
+        }
+
+        private void OnMaximizeWindow(object target, ExecutedRoutedEventArgs e)
+        {
+            SystemCommands.MaximizeWindow(this);
+        }
+
+        private void OnMinimizeWindow(object target, ExecutedRoutedEventArgs e)
+        {
+            SystemCommands.MinimizeWindow(this);
+        }
+
+        private void OnRestoreWindow(object target, ExecutedRoutedEventArgs e)
+        {
+            SystemCommands.RestoreWindow(this);
         }
     }
 }

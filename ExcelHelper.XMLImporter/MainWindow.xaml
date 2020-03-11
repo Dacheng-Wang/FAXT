@@ -5,16 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExcelHelper.XMLImporter"
         mc:Ignorable="d"
-        Title="XML Importer" Height="450" Width="800" Name="xMLWindow">
+        Title="XML Importer" Height="800" Width="600" Name="xMLWindow" Style="{DynamicResource MyWindowStyle}" FontSize="14">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/resources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
-        <Grid Width="200" HorizontalAlignment="Left" Name="treeGrid">
-            <TreeView Margin="10,10,10,10" Background="White" x:Name="treeView" SelectedItemChanged="TreeView_SelectedItemChanged" FrameworkElement.SizeChanged="Window_Resize"/>
-        </Grid>
-        <Grid Width="600" HorizontalAlignment="Right" Name="previewGrid">
-            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Output Preview:" VerticalAlignment="Top" Width="90" Margin="155,10,155,0"/>
-            <Button Content="Write preview data to cell" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,148,10"/>
-            <DataGrid Margin="10,50,10,50" Name="dataGrid"/>
-            <Button Content="Write all data to cell" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="148,0,0,10"/>
-        </Grid>
+        <TextBlock Text="Output Preview:" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5" FontSize="20"/>
+        <WebBrowser Name="xmlViewer" Margin="10,50,10,50"/>
+        <Button Name="btnImport" Content="Import Data To Selected Cell" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="10" Style="{StaticResource MyButtonStyle}" Width="200"/>
+        
     </Grid>
 </Window>
