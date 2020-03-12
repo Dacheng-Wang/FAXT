@@ -201,17 +201,17 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ExcelHelper.DropdownHelper\ExcelHelper.DropdownHelper.csproj">
+    <ProjectReference Include="..\ExcelHelper.DropdownHelper\FAXT.DropdownHelper.csproj">
       <Project>{ed3ca9ed-7aa4-4669-9b79-bff7ffc27972}</Project>
-      <Name>ExcelHelper.DropdownHelper</Name>
+      <Name>FAXT.DropdownHelper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ExcelHelper.Help\ExcelHelper.Help.csproj">
+    <ProjectReference Include="..\ExcelHelper.Help\FAXT.Help.csproj">
       <Project>{ed3ee163-1f41-4e03-8704-0a1e060d223f}</Project>
-      <Name>ExcelHelper.Help</Name>
+      <Name>FAXT.Help</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ExcelHelper.XMLImporter\ExcelHelper.XMLImporter.csproj">
+    <ProjectReference Include="..\ExcelHelper.XMLImporter\FAXT.XMLImporter.csproj">
       <Project>{8a1b93c8-5a2f-421e-aa1b-3479e090dc48}</Project>
-      <Name>ExcelHelper.XMLImporter</Name>
+      <Name>FAXT.XMLImporter</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
