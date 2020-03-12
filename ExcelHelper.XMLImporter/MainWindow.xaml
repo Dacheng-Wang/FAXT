@@ -9,14 +9,18 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Styles/resources.xaml"/>
+                <ResourceDictionary Source="pack://Application:,,,/ExcelHelper.XMLImporter;Component/styles/resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
         <TextBlock Text="Output Preview:" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5" FontSize="20"/>
         <WebBrowser Name="xmlViewer" Margin="10,50,10,50"/>
-        <Button Name="btnImport" Content="Import Data To Selected Cell" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="10" Style="{StaticResource MyButtonStyle}" Width="200"/>
-        
+        <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="50,5" Style="{StaticResource MyButtonStyle}" Width="220" Height="35" FontSize="12" Click="btnImportMerged">
+            <TextBlock TextAlignment="Center" TextWrapping="Wrap">Import Merged Data To Selected Cell (Better For Viewing)</TextBlock>
+        </Button>
+        <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="50,5" Style="{StaticResource MyButtonStyle}" Width="220" Height="35" FontSize="12" Click="btnImportUnmerged">
+            <TextBlock TextAlignment="Center" TextWrapping="Wrap">Import Unmerged Data To Selected Cell (Better For Formula Building)</TextBlock>
+        </Button>
     </Grid>
 </Window>

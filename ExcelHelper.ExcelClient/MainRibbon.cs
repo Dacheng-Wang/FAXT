@@ -20,7 +20,7 @@ namespace ExcelHelper.ExcelClient
             _appSettingsPath = Directory.CreateDirectory(
                  Path.Combine(
                      Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                     "ProjectCVIA"
+                     "ExcelHelper"
                      )
                  ).FullName;
         }
@@ -41,7 +41,7 @@ namespace ExcelHelper.ExcelClient
         }
         private void btnXMLImporter_Click(object sender, RibbonControlEventArgs e)
         {
-            Xml.MainWindow xmlWindow = new Xml.MainWindow();
+            Xml.MainWindow xmlWindow = new Xml.MainWindow(Globals.ThisAddIn.Application, _appSettingsPath);
             xmlWindow.Show();
         }
         private void btnHelp_Click(object sender, RibbonControlEventArgs e)

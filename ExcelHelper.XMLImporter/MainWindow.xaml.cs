@@ -1,16 +1,14 @@
-﻿using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using Crl = System.Windows.Controls;
-using System.Xml;
 using System.Xml.Linq;
 using System.Windows.Forms;
 using System.IO;
 using System.Data;
-using System.Windows.Media;
-using System.Collections.Generic;
 using System.Xml.Xsl;
 using System;
 using System.Windows.Input;
+using Xl = Microsoft.Office.Interop.Excel;
+using System.Xml;
 
 namespace ExcelHelper.XMLImporter
 {
@@ -19,9 +17,10 @@ namespace ExcelHelper.XMLImporter
     /// </summary>
     public partial class MainWindow : Window
     {
-        string projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName;
-        public MainWindow()
+        private Xl.Application app = new Xl.Application();
+        public MainWindow(Xl.Application xlApp, String _appPath)
         {
+            app = xlApp;
             this.CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, this.OnCloseWindow));
             this.CommandBindings.Add(new CommandBinding(SystemCommands.MaximizeWindowCommand, this.OnMaximizeWindow, this.OnCanResizeWindow));
             this.CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, this.OnMinimizeWindow, this.OnCanMinimizeWindow));
@@ -38,38 +37,45 @@ namespace ExcelHelper.XMLImporter
                     StreamReader file = File.OpenText(fileDialog.FileName);
                     XDocument xmlDoc = XDocument.Load(file);
                     var myXslTrans = new XslCompiledTransform();
-                    myXslTrans.Load(Path.Combine(projectPath, "Generic.xslt"));
-                    myXslTrans.Transform(fileDialog.FileName, Path.Combine(projectPath, "result.html"));
-                    FileStream htmlFile = new FileStream(Path.Combine(projectPath, "result.html"), FileMode.Open);
+                    using (var reader = new StringReader(Properties.Resources.Generic))
+                    {
+                        using (XmlReader xmlReader = XmlReader.Create(reader))
+                        {
+                            myXslTrans.Load(xmlReader);
+                            myXslTrans.Transform(fileDialog.FileName, Path.Combine(_appPath, "result.html"));
+                        }
+                    }
+                    FileStream htmlFile = new FileStream(Path.Combine(_appPath, "result.html"), FileMode.Open);
                     xmlViewer.NavigateToStream(htmlFile);
                     xMLWindow.Topmost = true;
                 }
             }
         }
-        
-        private DataTable ReturnDataTableFromNode(Crl.TreeViewItem treeViewItem)
+        private void FillBlankInRange(Xl.Range range)
         {
-            DataTable dataTable = new DataTable();
-            dataTable.Columns.Add("Child Node");
-            foreach (Crl.TreeViewItem firstLayerItem in treeViewItem.Items)
+            DataTable table = new DataTable();
+            foreach (Xl.Range rng in range)
             {
-                DataRow dataRow = dataTable.NewRow();
-                if (firstLayerItem.HasItems)
+                if (rng.Interior.Color == 16777215 && rng.Value2 == null)
                 {
-                    foreach (Crl.TreeViewItem childItem in firstLayerItem.Items)
-                    {
-                        if (!dataTable.Columns.Contains(childItem.Header.ToString())) dataTable.Columns.Add(childItem.Header.ToString());
-                        foreach (Crl.TreeViewItem grandchildItem in childItem.Items)
-                        {
-                            dataRow[childItem.Header.ToString()] = grandchildItem.Header;
-                        }
-                    }
-                    dataRow["Child Node"] = firstLayerItem.Header;
-                    dataTable.Rows.Add(dataRow);
+                    if (rng.Offset[-1].Value2 == null) rng.Value2 = rng.End[Xl.XlDirection.xlUp].Value2;
+                    else rng.Value2 = rng.Offset[-1].Value2;
                 }
-                else return null;
             }
-            return dataTable;
+        }
+        private void btnImportMerged(object sender, RoutedEventArgs e)
+        {
+            dynamic doc = xmlViewer.Document;
+            doc.ExecCommand("SelectAll", true, null);
+            doc.ExecCommand("Copy", false, null);
+            app.Selection.PasteSpecial();
+            doc.Selection.Empty();
+        }
+        private void btnImportUnmerged(object sender, RoutedEventArgs e)
+        {
+            btnImportMerged(sender, e);
+            app.Selection.UnMerge();
+            FillBlankInRange(app.Selection);
         }
         private void OnCanResizeWindow(object sender, CanExecuteRoutedEventArgs e)
         {
@@ -100,5 +106,6 @@ namespace ExcelHelper.XMLImporter
         {
             SystemCommands.RestoreWindow(this);
         }
+
     }
 }

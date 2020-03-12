@@ -8,6 +8,7 @@ using System;
 using System.Windows.Threading;
 using System.Threading;
 using System.Windows.Controls;
+using System.Globalization;
 
 namespace ExcelHelper.DropdownHelper
 {
@@ -25,6 +26,7 @@ namespace ExcelHelper.DropdownHelper
         private bool isAuto = false;
         private bool previousValidation = false;
         private bool currentValidation = false;
+        private bool blFirstTime = true;
         public MainWindow(Xl.Application excelApp)
         {
             InitializeComponent();
@@ -96,12 +98,14 @@ namespace ExcelHelper.DropdownHelper
             RefreshActive();
             if (mainWindow == null)
             {
-                this.SearchBox.ConvertNormalCBToAutoComplete();
+                if (blFirstTime)
+                {
+                    SearchBox = TransformBox(SearchBox);
+                }
                 this.SearchBox.IsDropDownOpen = true;
             }
             else
             {
-                mainWindow.SearchBox.ConvertNormalCBToAutoComplete();
                 mainWindow.SearchBox.IsDropDownOpen = true;
             }
         }
@@ -231,6 +235,65 @@ namespace ExcelHelper.DropdownHelper
             {
                 btnFill(sender, e);
             }
+        }
+        private ComboBox TransformBox(ComboBox box)
+        {
+            var targetComboBox = box as ComboBox;
+            var targetTextBox = box?.Template.FindName("PART_EditableTextBox", box) as TextBox;
+            if (targetTextBox == null) return null;
+
+            targetComboBox.Tag = "TextInput";
+            targetComboBox.StaysOpenOnEdit = true;
+            targetComboBox.IsEditable = true;
+            targetComboBox.IsTextSearchEnabled = false;
+
+            targetTextBox.TextChanged += (o, args) =>
+            {
+                var textBox = (TextBox)o;
+                var searchText = textBox.Text;
+
+                if (targetComboBox.Tag.ToString() == "Selection")
+                {
+                    targetComboBox.Tag = "TextInput";
+                    targetComboBox.IsDropDownOpen = true;
+                }
+                else
+                {
+                    if (targetComboBox.SelectionBoxItem != null)
+                    {
+                        targetComboBox.SelectedItem = null;
+                        targetTextBox.Text = searchText;
+                        textBox.CaretIndex = int.MaxValue;
+                    }
+
+                    if (string.IsNullOrEmpty(searchText))
+                    {
+                        targetComboBox.Items.Filter = item => true;
+                        targetComboBox.SelectedItem = default(object);
+                    }
+                    else
+                        targetComboBox.Items.Filter = item =>
+                                CultureInfo.InvariantCulture.CompareInfo.IndexOf(item.ToString(), searchText, CompareOptions.IgnoreCase) >= 0;
+                    //Back up code here in case we want to add a case sensitivity toggle
+                    //item.ToString().Contains(searchText);
+                    //Back up code here if we want to build a StartWith/Contains toggle
+                    //item.ToString().StartsWith(searchText, true, CultureInfo.InvariantCulture);
+
+                    Keyboard.ClearFocus();
+                    Keyboard.Focus(targetTextBox);
+                    targetComboBox.IsDropDownOpen = true;
+                    targetTextBox.SelectionStart = targetTextBox.Text.Length;
+                }
+            };
+
+
+            targetComboBox.SelectionChanged += (o, args) =>
+            {
+                var comboBox = o as ComboBox;
+                if (comboBox?.SelectedItem == null) return;
+                comboBox.Tag = "Selection";
+            };
+            return targetComboBox;
         }
     }
 }
