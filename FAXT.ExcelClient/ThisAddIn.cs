@@ -7,7 +7,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
 
-namespace ExcelHelper.ExcelClient
+namespace FAXT.ExcelClient
 {
     public partial class ThisAddIn
     {

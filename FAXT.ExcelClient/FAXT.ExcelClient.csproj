@@ -24,15 +24,38 @@
     <ProjectGuid>{3DDE377E-EBAE-4A33-B762-12C685C1153B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
-    <RootNamespace>ExcelHelper.ExcelClient</RootNamespace>
-    <AssemblyName>ExcelHelper.ExcelClient</AssemblyName>
-    <LoadBehavior>3</LoadBehavior>
+    <RootNamespace>FAXT.ExcelClient</RootNamespace>
+    <AssemblyName>FAST.ExcelClient</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <DefineConstants>VSTO40</DefineConstants>
+    <IsWebBootstrapper>False</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <BootstrapperComponentsLocation>HomeSite</BootstrapperComponentsLocation>
+    <PublishUrl>C:\Users\dache\Desktop\FAXT\</PublishUrl>
+    <InstallUrl />
+    <TargetCulture>en</TargetCulture>
+    <ApplicationVersion>0.0.0.2</ApplicationVersion>
+    <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateInterval>0</UpdateInterval>
+    <UpdateIntervalUnits>days</UpdateIntervalUnits>
+    <ProductName>FAXT.ExcelClient</ProductName>
+    <PublisherName />
+    <SupportUrl />
+    <FriendlyName>FAXT.ExcelClient</FriendlyName>
+    <OfficeApplicationDescription />
+    <LoadBehavior>3</LoadBehavior>
   </PropertyGroup>
   <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.VSTORuntime.4.0">
       <Visible>False</Visible>
       <ProductName>Microsoft Visual Studio 2010 Tools for Office Runtime %28x86 and x64%29</ProductName>
@@ -180,7 +203,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="ExcelHelper.ExcelClient_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -201,15 +223,15 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ExcelHelper.DropdownHelper\FAXT.DropdownHelper.csproj">
+    <ProjectReference Include="..\FAXT.DropdownHelper\FAXT.DropdownHelper.csproj">
       <Project>{ed3ca9ed-7aa4-4669-9b79-bff7ffc27972}</Project>
       <Name>FAXT.DropdownHelper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ExcelHelper.Help\FAXT.Help.csproj">
+    <ProjectReference Include="..\FAXT.Help\FAXT.Help.csproj">
       <Project>{ed3ee163-1f41-4e03-8704-0a1e060d223f}</Project>
       <Name>FAXT.Help</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ExcelHelper.XMLImporter\FAXT.XMLImporter.csproj">
+    <ProjectReference Include="..\FAXT.XMLImporter\FAXT.XMLImporter.csproj">
       <Project>{8a1b93c8-5a2f-421e-aa1b-3479e090dc48}</Project>
       <Name>FAXT.XMLImporter</Name>
     </ProjectReference>
@@ -222,10 +244,13 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>ExcelHelper.ExcelClient_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>FAXT.ExcelClient_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>5815FABC6AE84FBAE613160EB53B878096A8159B</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -236,8 +261,8 @@
     <VisualStudio>
       <FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
         <ProjectProperties HostName="Excel" HostPackage="{29A7B9D7-A7F1-4328-8EF0-6B2D1A56B2C1}" OfficeVersion="15.0" VstxVersion="4.0" ApplicationType="Excel" Language="cs" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\16.0\Excel\InstallRoot\Path#excel.exe" DebugInfoCommandLine="/x" AddItemTemplatesGuid="{51063C3A-E220-4D12-8922-BDA915ACD783}" />
-        <Host Name="Excel" GeneratedCodeNamespace="ExcelHelper.ExcelClient" IconIndex="0">
-          <HostItem Name="ThisAddIn" Code="ThisAddIn.cs" CanonicalName="AddIn" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.cs" />
+        <Host Name="Excel" GeneratedCodeNamespace="FAXT.ExcelClient" PublishedHash="69C324AB27932AA2FBF2B7EA72250886FF164DE6" IconIndex="0">
+          <HostItem Name="ThisAddIn" Code="ThisAddIn.cs" CanonicalName="AddIn" PublishedHash="E71566537810B04250BF74E26739AA6364B377AB" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.cs" />
         </Host>
       </FlavorProperties>
     </VisualStudio>

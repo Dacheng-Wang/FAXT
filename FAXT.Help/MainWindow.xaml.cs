@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ExcelHelper.Help
+namespace FAXT.Help
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

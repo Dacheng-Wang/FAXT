@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using Crl = System.Windows.Controls;
 using System.Xml.Linq;
 using System.Windows.Forms;
 using System.IO;
@@ -10,7 +9,7 @@ using System.Windows.Input;
 using Xl = Microsoft.Office.Interop.Excel;
 using System.Xml;
 
-namespace ExcelHelper.XMLImporter
+namespace FAXT.XMLImporter
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

@@ -1,7 +1,7 @@
-﻿<Application x:Class="ExcelHelper.XMLImporter.App"
+﻿<Application x:Class="FAXT.XMLImporter.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ExcelHelper.XMLImporter"
+             xmlns:local="clr-namespace:FAXT.XMLImporter"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

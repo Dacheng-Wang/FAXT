@@ -10,7 +10,7 @@ using System.Threading;
 using System.Windows.Controls;
 using System.Globalization;
 
-namespace ExcelHelper.DropdownHelper
+namespace FAXT.DropdownHelper
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

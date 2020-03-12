@@ -1,7 +1,7 @@
-﻿<Application x:Class="ExcelHelper.DropdownHelper.App"
+﻿<Application x:Class="FAXT.DropdownHelper.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ExcelHelper.DropdownHelper"
+             xmlns:local="clr-namespace:FAXT.DropdownHelper"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

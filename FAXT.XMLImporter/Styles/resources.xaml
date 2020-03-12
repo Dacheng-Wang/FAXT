@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:ExcelHelper.XMLImporter">
+                    xmlns:local="clr-namespace:FAXT.XMLImporter">
     <BooleanToVisibilityConverter x:Key="bool2VisibilityConverter" />
 
     <Color x:Key="WindowBackgroundColor">#FF2D2D30</Color>

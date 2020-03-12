@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace ExcelHelper.Help
+namespace FAXT.Help
 {
     /// <summary>
     /// Interaction logic for App.xaml

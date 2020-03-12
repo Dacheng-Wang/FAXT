@@ -1,4 +1,4 @@
-﻿namespace ExcelHelper.ExcelClient
+﻿namespace FAXT.ExcelClient
 {
     partial class MainRibbon : Microsoft.Office.Tools.Ribbon.RibbonBase
     {

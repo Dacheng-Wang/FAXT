@@ -1,15 +1,15 @@
 ﻿using System;
 using Microsoft.Office.Tools.Ribbon;
-using Dh = ExcelHelper.DropdownHelper;
+using Dh = FAXT.DropdownHelper;
 using System.Threading;
 using System.Windows.Threading;
 using System.IO;
 using Xl = Microsoft.Office.Interop.Excel;
 using System.Windows.Forms;
-using Help = ExcelHelper.Help;
-using Xml = ExcelHelper.XMLImporter;
+using Help = FAXT.Help;
+using Xml = FAXT.XMLImporter;
 
-namespace ExcelHelper.ExcelClient
+namespace FAXT.ExcelClient
 {
     public partial class MainRibbon
     {
@@ -20,7 +20,7 @@ namespace ExcelHelper.ExcelClient
             _appSettingsPath = Directory.CreateDirectory(
                  Path.Combine(
                      Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                     "ExcelHelper"
+                     "FAXT"
                      )
                  ).FullName;
         }

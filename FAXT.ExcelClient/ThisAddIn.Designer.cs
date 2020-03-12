@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 #pragma warning disable 414
-namespace ExcelHelper.ExcelClient {
+namespace FAXT.ExcelClient {
     
     
     /// 
