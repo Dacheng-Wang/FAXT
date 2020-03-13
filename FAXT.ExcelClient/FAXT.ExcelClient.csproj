@@ -31,7 +31,7 @@
     <IsWebBootstrapper>True</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <PublishUrl>publish\</PublishUrl>
-    <InstallUrl>https://raw.githubusercontent.com/Dacheng-Wang/FAXT/master/Publish/</InstallUrl>
+    <InstallUrl>https://raw.githubusercontent.com/Dacheng-Wang/FAXT/master/FAXT.ExcelClient/publish/</InstallUrl>
     <TargetCulture>en</TargetCulture>
     <ApplicationVersion>0.0.0.4</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
