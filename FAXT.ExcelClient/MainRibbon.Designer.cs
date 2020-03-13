@@ -41,6 +41,7 @@
             this.btnXML = this.Factory.CreateRibbonButton();
             this.groupHelp = this.Factory.CreateRibbonGroup();
             this.btnHelp = this.Factory.CreateRibbonButton();
+            this.button1 = this.Factory.CreateRibbonButton();
             this.tabMain.SuspendLayout();
             this.groupInput.SuspendLayout();
             this.groupImport.SuspendLayout();
@@ -73,6 +74,7 @@
             // groupImport
             // 
             this.groupImport.Items.Add(this.btnXML);
+            this.groupImport.Items.Add(this.button1);
             this.groupImport.Label = "Data Import";
             this.groupImport.Name = "groupImport";
             // 
@@ -99,6 +101,14 @@
             this.btnHelp.OfficeImageId = "Help";
             this.btnHelp.ShowImage = true;
             this.btnHelp.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Help_Click);
+            // 
+            // button1
+            // 
+            this.button1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.button1.Label = "PDF Table Grabber";
+            this.button1.Name = "button1";
+            this.button1.OfficeImageId = "ContTypeApplyToList";
+            this.button1.ShowImage = true;
             // 
             // MainRibbon
             // 
@@ -127,6 +137,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnXML;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup groupHelp;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnHelp;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
     }
 
     partial class ThisRibbonCollection

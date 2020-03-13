@@ -33,7 +33,7 @@
     <PublishUrl>C:\Users\dache\Desktop\FAXT\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>0.0.0.2</ApplicationVersion>
+    <ApplicationVersion>0.0.0.3</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>0</UpdateInterval>
