@@ -98,7 +98,7 @@
             // groupHelp
             // 
             this.groupHelp.Items.Add(this.btnHelp);
-            this.groupHelp.Label = "Other";
+            this.groupHelp.Label = "About";
             this.groupHelp.Name = "groupHelp";
             // 
             // btnHelp
