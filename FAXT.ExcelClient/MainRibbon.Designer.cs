@@ -39,9 +39,9 @@
             this.btnDropdownHelper = this.Factory.CreateRibbonButton();
             this.groupImport = this.Factory.CreateRibbonGroup();
             this.btnXML = this.Factory.CreateRibbonButton();
+            this.button1 = this.Factory.CreateRibbonButton();
             this.groupHelp = this.Factory.CreateRibbonGroup();
             this.btnHelp = this.Factory.CreateRibbonButton();
-            this.button1 = this.Factory.CreateRibbonButton();
             this.tabMain.SuspendLayout();
             this.groupInput.SuspendLayout();
             this.groupImport.SuspendLayout();
@@ -87,10 +87,18 @@
             this.btnXML.ShowImage = true;
             this.btnXML.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.XMLImporter_Click);
             // 
+            // button1
+            // 
+            this.button1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.button1.Label = "PDF Table Grabber";
+            this.button1.Name = "button1";
+            this.button1.OfficeImageId = "ContTypeApplyToList";
+            this.button1.ShowImage = true;
+            // 
             // groupHelp
             // 
             this.groupHelp.Items.Add(this.btnHelp);
-            this.groupHelp.Label = "Help";
+            this.groupHelp.Label = "Other";
             this.groupHelp.Name = "groupHelp";
             // 
             // btnHelp
@@ -101,14 +109,6 @@
             this.btnHelp.OfficeImageId = "Help";
             this.btnHelp.ShowImage = true;
             this.btnHelp.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Help_Click);
-            // 
-            // button1
-            // 
-            this.button1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.button1.Label = "PDF Table Grabber";
-            this.button1.Name = "button1";
-            this.button1.OfficeImageId = "ContTypeApplyToList";
-            this.button1.ShowImage = true;
             // 
             // MainRibbon
             // 
