@@ -53,7 +53,7 @@
             this.tabMain.Groups.Add(this.groupInput);
             this.tabMain.Groups.Add(this.groupImport);
             this.tabMain.Groups.Add(this.groupHelp);
-            this.tabMain.Label = "Excel Helper";
+            this.tabMain.Label = "FAXT";
             this.tabMain.Name = "tabMain";
             // 
             // groupInput
@@ -98,7 +98,7 @@
             // groupHelp
             // 
             this.groupHelp.Items.Add(this.btnHelp);
-            this.groupHelp.Label = "About";
+            this.groupHelp.Label = "Other";
             this.groupHelp.Name = "groupHelp";
             // 
             // btnHelp
