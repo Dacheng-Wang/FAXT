@@ -68,7 +68,7 @@
             this.btnDropdownHelper.Name = "btnDropdownHelper";
             this.btnDropdownHelper.OfficeImageId = "ChartQuickExplore";
             this.btnDropdownHelper.ShowImage = true;
-            this.btnDropdownHelper.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnDropdownHelper_Click);
+            this.btnDropdownHelper.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.DropdownHelper_Click);
             // 
             // groupImport
             // 
@@ -83,7 +83,7 @@
             this.btnXML.Name = "btnXML";
             this.btnXML.OfficeImageId = "ImportXmlFile";
             this.btnXML.ShowImage = true;
-            this.btnXML.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnXMLImporter_Click);
+            this.btnXML.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.XMLImporter_Click);
             // 
             // groupHelp
             // 
@@ -98,7 +98,7 @@
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.OfficeImageId = "Help";
             this.btnHelp.ShowImage = true;
-            this.btnHelp.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnHelp_Click);
+            this.btnHelp.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Help_Click);
             // 
             // MainRibbon
             // 

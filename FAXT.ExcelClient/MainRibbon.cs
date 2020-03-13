@@ -24,10 +24,9 @@ namespace FAXT.ExcelClient
                      )
                  ).FullName;
         }
-        private void btnDropdownHelper_Click(object sender, RibbonControlEventArgs e)
+        private void DropdownHelper_Click(object sender, RibbonControlEventArgs e)
         {
             dhMainWindow = new Dh.MainWindow(Globals.ThisAddIn.Application);
-
             Globals.ThisAddIn.Application.ActiveSheet.SelectionChange += new Xl.DocEvents_SelectionChangeEventHandler(dhMainWindow.SelectionChange);
             if (dhMainWindow == null)
             {
@@ -39,12 +38,12 @@ namespace FAXT.ExcelClient
                 dhMainWindow.StartNewWindow(Globals.ThisAddIn.Application);
             }
         }
-        private void btnXMLImporter_Click(object sender, RibbonControlEventArgs e)
+        private void XMLImporter_Click(object sender, RibbonControlEventArgs e)
         {
             Xml.MainWindow xmlWindow = new Xml.MainWindow(Globals.ThisAddIn.Application, _appSettingsPath);
             xmlWindow.Show();
         }
-        private void btnHelp_Click(object sender, RibbonControlEventArgs e)
+        private void Help_Click(object sender, RibbonControlEventArgs e)
         {
             Help.MainWindow helpWindow = new Help.MainWindow();
             helpWindow.Show();
