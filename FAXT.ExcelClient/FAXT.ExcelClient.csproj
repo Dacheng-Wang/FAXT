@@ -33,7 +33,7 @@
     <PublishUrl>C:\Users\dache\Desktop\FAXT\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>0.0.0.2</ApplicationVersion>
+    <ApplicationVersion>0.0.0.1</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>0</UpdateInterval>
@@ -203,6 +203,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="FAXT.ExcelClient_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -247,7 +248,7 @@
     <ManifestKeyFile>FAXT.ExcelClient_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>5815FABC6AE84FBAE613160EB53B878096A8159B</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>E90DAFF9D9886997BA08797FEBAA6C4B59806B2B</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
