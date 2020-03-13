@@ -16,4 +16,4 @@ The toolbox supports auto-update upon the ribbon loading. To install it properly
 ![](Images/Certificate%202.PNG)
 (reference for step 7-8)
 9. This will return you back to the wizard. Click "Next" then "Finish". You should see a message box saying the import was successful.
-10. Double-click "setup.exe" and you should be able to install the toolbox successfully. The next time you open Excel, you should see a new ribbon tab named "FAXT"
+10. Double-click "setup.exe" and you should be able to install the toolbox successfully. The next time you open Excel, the toolbox will be updated to the latest version, and you should see a new ribbon tab named "FAXT"
