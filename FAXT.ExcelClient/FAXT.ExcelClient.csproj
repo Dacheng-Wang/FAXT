@@ -39,8 +39,8 @@
     <UpdateInterval>0</UpdateInterval>
     <UpdateIntervalUnits>days</UpdateIntervalUnits>
     <ProductName>FAXT.ExcelClient</ProductName>
-    <PublisherName />
-    <SupportUrl />
+    <PublisherName>Dacheng Wang</PublisherName>
+    <SupportUrl>https://github.com/Dacheng-Wang/FAXT</SupportUrl>
     <FriendlyName>FAXT.ExcelClient</FriendlyName>
     <OfficeApplicationDescription />
     <LoadBehavior>3</LoadBehavior>
