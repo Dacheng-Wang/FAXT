@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FAXT.Help", "FAXT.Help\FAXT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FAXT.XMLImporter", "FAXT.XMLImporter\FAXT.XMLImporter.csproj", "{8A1B93C8-5A2F-421E-AA1B-3479E090DC48}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Publish", "Publish", "{42B2B925-AEED-425C-A7FD-7500C3FAB737}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
