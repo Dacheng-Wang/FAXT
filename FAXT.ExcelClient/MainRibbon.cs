@@ -92,5 +92,9 @@ namespace FAXT.ExcelClient
                 if (dialogResult1 == DialogResult.OK) Process.Start("http://127.0.0.1:8080/");
             }
         }
+        private void ExternalLink_Click(object sender, RibbonControlEventArgs e)
+        {
+
+        }
     }
 }

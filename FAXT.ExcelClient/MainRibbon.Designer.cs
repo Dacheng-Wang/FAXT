@@ -41,6 +41,8 @@
             this.btnXML = this.Factory.CreateRibbonButton();
             this.button1 = this.Factory.CreateRibbonButton();
             this.groupHelp = this.Factory.CreateRibbonGroup();
+            this.menuCleanup = this.Factory.CreateRibbonMenu();
+            this.btnExternalLink = this.Factory.CreateRibbonButton();
             this.btnHelp = this.Factory.CreateRibbonButton();
             this.tabMain.SuspendLayout();
             this.groupInput.SuspendLayout();
@@ -98,9 +100,27 @@
             // 
             // groupHelp
             // 
+            this.groupHelp.Items.Add(this.menuCleanup);
             this.groupHelp.Items.Add(this.btnHelp);
             this.groupHelp.Label = "Other";
             this.groupHelp.Name = "groupHelp";
+            // 
+            // menuCleanup
+            // 
+            this.menuCleanup.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.menuCleanup.Items.Add(this.btnExternalLink);
+            this.menuCleanup.Label = "Workbook Cleanup";
+            this.menuCleanup.Name = "menuCleanup";
+            this.menuCleanup.OfficeImageId = "ListSynchronize";
+            this.menuCleanup.ShowImage = true;
+            // 
+            // btnExternalLink
+            // 
+            this.btnExternalLink.Label = "External Link Analyzer";
+            this.btnExternalLink.Name = "btnExternalLink";
+            this.btnExternalLink.OfficeImageId = "TextBoxLinkBreak";
+            this.btnExternalLink.ShowImage = true;
+            this.btnExternalLink.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ExternalLink_Click);
             // 
             // btnHelp
             // 
@@ -139,6 +159,8 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup groupHelp;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnHelp;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonMenu menuCleanup;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnExternalLink;
     }
 
     partial class ThisRibbonCollection
