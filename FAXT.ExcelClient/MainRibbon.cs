@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Help = FAXT.Help;
 using Xml = FAXT.XMLImporter;
 using System.Diagnostics;
+using Lq = System.Linq;
 
 namespace FAXT.ExcelClient
 {
@@ -94,7 +95,12 @@ namespace FAXT.ExcelClient
         }
         private void ExternalLink_Click(object sender, RibbonControlEventArgs e)
         {
-
+            Xl.Workbook openWb = Globals.ThisAddIn.Application.ActiveWorkbook;
+            foreach (object link in (Array)((object)openWb.LinkSources(Xl.XlLink.xlExcelLinks)))
+            {
+                Console.WriteLine(link.ToString());
+                openWb.BreakLink(link.ToString(), Xl.XlLinkType.xlLinkTypeExcelLinks);
+            }
         }
     }
 }
