@@ -1,5 +1,5 @@
 # Finance/Accounting Excel Toolbox (FAXT)
-A collection of tools developed to help Finance and Accounting professionals to collect, transform, validate, analyze, and export data.
+A collection of tools developed to help Finance and Accounting professionals to collect, transform, validate, analyze, and export data. This toolbox is designed to work in a local enviornment and all data will be contained in users' local machines.
 
 # Installation
 The toolbox supports auto-update upon the ribbon loading. To install it properly, you have to follow the steps below:
