@@ -1,6 +1,9 @@
 # Finance/Accounting Excel Toolbox (FAXT)
 A collection of tools developed to help Finance and Accounting professionals to collect, transform, validate, analyze, and export data. This toolbox is designed to work in a local enviornment and all data will be contained in users' local machines.
-
+# Tool Description
+Dropdown Helper:
+This tool is useful when working with workbook with data validation. It provides additional functionalities such as Search As You Type (work with substring searching), sorting, and toggles to auto show/hide the window and move cell selection to any direction afterward in order to provide a smooth data input experience working with data validation.
+![](Images/Dropdown%20Helper%20Demo.gif)
 # Installation
 The toolbox supports auto-update upon the ribbon loading. To install it properly, you have to follow the steps below:
 1. Download the latest version (.zip file) from Release page
