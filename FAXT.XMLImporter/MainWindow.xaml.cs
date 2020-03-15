@@ -33,17 +33,17 @@ namespace FAXT.XMLImporter
                 fileDialog.Title = "Please Select Your XML File";
                 if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    StreamReader file = File.OpenText(fileDialog.FileName);
-                    XDocument xmlDoc = XDocument.Load(file);
                     var myXslTrans = new XslCompiledTransform();
-                    using (var reader = new StringReader(Properties.Resources.Generic))
-                    {
-                        using (XmlReader xmlReader = XmlReader.Create(reader))
-                        {
-                            myXslTrans.Load(xmlReader);
-                            myXslTrans.Transform(fileDialog.FileName, Path.Combine(_appPath, "result.html"));
-                        }
-                    }
+                    var reader = new StringReader(Properties.Resources.Generic);
+                    XmlReaderSettings settings = new XmlReaderSettings();
+                    settings.DtdProcessing = DtdProcessing.Parse;
+                    XmlReader xsltReader = XmlReader.Create(reader, settings);
+                    myXslTrans.Load(xsltReader);
+                    XmlReader xmlReader = new XmlTextReader(fileDialog.FileName);
+                    StreamWriter inputXML = new StreamWriter(Path.Combine(_appPath, "result.html"));
+                    myXslTrans.Transform(xmlReader, null, inputXML);
+                    inputXML.Close();
+                    inputXML.Dispose();
                     FileStream htmlFile = new FileStream(Path.Combine(_appPath, "result.html"), FileMode.Open);
                     xmlViewer.NavigateToStream(htmlFile);
                     xMLWindow.Topmost = true;
