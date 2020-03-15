@@ -90,10 +90,11 @@
             // button1
             // 
             this.button1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.button1.Label = "PDF Table Grabber";
+            this.button1.Label = "PDF Table Grabber (Tabula)";
             this.button1.Name = "button1";
             this.button1.OfficeImageId = "ContTypeApplyToList";
             this.button1.ShowImage = true;
+            this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Tabula_Click);
             // 
             // groupHelp
             // 
