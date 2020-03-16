@@ -8,9 +8,13 @@ This tool is useful when working with workbook with data validation. It provides
 This generic XML Importer will work with XMLs with any schema so you won't need to work with the poorly-designed XML Import Wizard built in Excel.
 ![](Images/XML%20Importer.PNG)
 ## PDF Table Grabber/Tabula:
-This is a direct port of the amazing open-source Tabula project. To use it, you must have [Java](https://www.java.com/download/) installed. For more information, you can head over to https://github.com/tabulapdf/tabula.
+This is a direct port of the amazing open-source Tabula project. To use it, you must have [Java](https://www.java.com/download/) installed.
+![](Images/Tabula%201.PNG)
+![](Images/Tabula%202.PNG)
+For more information, you can head over to https://github.com/tabulapdf/tabula.
 ## External Link Breaker:
 External links can be painful to deal with as they can hide in named ranges and conditional formatting. This tool can help breaking those normally unbreakable links through native Excel "Edit Link" window. Notes: Links within charts and other special objects cannot be broken through this too.
+![](Images/External%20Link%20Breaker.PNG)
 # Installation
 The toolbox supports auto-update upon the ribbon loading. To install it properly, you have to follow the steps below:
 1. Download the latest version (.zip file) from Release page
