@@ -38,57 +38,91 @@ namespace FAXT.ExternalLinkBreaker
             }
             else
             {
+                RefreshList();
+            }
+        }
+        private void RefreshList()
+        {
+            ExternalLinkList.Items.Clear();
+            if ((Array)((object)openWb.LinkSources(Xl.XlLink.xlExcelLinks)) != null)
+            {
                 foreach (object link in (Array)((object)openWb.LinkSources(Xl.XlLink.xlExcelLinks)))
                 {
                     ExternalLinkList.Items.Add(link.ToString());
                 }
             }
         }
-        private void DeleteExternalLink(object link)
+        private void DeleteExternalLink(IEnumerable<object> links)
         {
             Xl.Names names = openWb.Names;
             openWb.Application.ScreenUpdating = false;
             openWb.Application.Calculation = Xl.XlCalculation.xlCalculationManual;
-            //Delete all named range with the external link in ReferTo
-            foreach (Xl.Name name in names)
+            foreach (object link in links)
             {
-                string formula = name.RefersTo;
-                if (formula.Replace(@"[", "").Replace(@"]", "").Contains(link.ToString()))
+                //Delete all named range with the external link in ReferTo
+                foreach (Xl.Name name in names)
                 {
-                    name.Delete();
-                }
-            }
-            //Delete all data validation with the external link in the formula
-            foreach (Xl.Worksheet ws in openWb.Worksheets)
-            {
-                foreach (Xl.Range cell in ws.Cells.SpecialCells(Xl.XlCellType.xlCellTypeAllValidation))
-                {
-                    if (cell.Validation.Formula1.Replace(@"[", "").Replace(@"]", "").Contains(link.ToString()) || cell.Validation.Formula2.Replace(@"[", "").Replace(@"]", "").Contains(link.ToString()))
+                    string formula = name.RefersTo;
+                    if (formula.Replace(@"[", "").Replace(@"]", "").Contains(link.ToString()))
                     {
-                        cell.Validation.Delete();
+                        name.Delete();
                     }
                 }
-                if (ws.Cells.FormatConditions.Count > 0)
+                //Delete all data validation with the external link in the formula
+                foreach (Xl.Worksheet ws in openWb.Worksheets)
                 {
-                    for (int i = 1; i <= ws.Cells.FormatConditions.Count; i++)
+                    if (SpecialCellsCatchError(ws.Cells, Xl.XlCellType.xlCellTypeAllValidation) != null)
                     {
-                        Xl.FormatCondition formatCondition = ws.Cells.FormatConditions[i];
-                        if (formatCondition.Formula1.Replace(@"[", "").Replace(@"]", "").Contains(link.ToString()) || formatCondition.Formula2.Replace(@"[", "").Replace(@"]", "").Contains(link.ToString()))
+                        foreach (Xl.Range cell in ws.Cells.SpecialCells(Xl.XlCellType.xlCellTypeAllValidation))
                         {
-                            formatCondition.Delete();
+                            if (cell.Validation.Formula1.Replace(@"[", "").Replace(@"]", "").Contains(link.ToString()) || cell.Validation.Formula2.Replace(@"[", "").Replace(@"]", "").Contains(link.ToString()))
+                            {
+                                cell.Validation.Delete();
+                            }
+                        }
+                    }
+                    if (ws.Cells.FormatConditions.Count > 0)
+                    {
+                        for (int i = 1; i <= ws.Cells.FormatConditions.Count; i++)
+                        {
+                            Xl.FormatCondition formatCondition = ws.Cells.FormatConditions[i] as Xl.FormatCondition;
+                            if (formatCondition != null)
+                            {
+                                if (formatCondition.Formula1.Replace(@"[", "").Replace(@"]", "").Contains(link.ToString()) || formatCondition.Formula2.Replace(@"[", "").Replace(@"]", "").Contains(link.ToString()))
+                                {
+                                    formatCondition.Delete();
+                                }
+                            }
                         }
                     }
                 }
+                openWb.BreakLink(link.ToString(), Xl.XlLinkType.xlLinkTypeExcelLinks);
             }
-            openWb.BreakLink(link.ToString(), Xl.XlLinkType.xlLinkTypeExcelLinks);
             openWb.Application.ScreenUpdating = false;
             openWb.Application.Calculation = Xl.XlCalculation.xlCalculationAutomatic;
         }
+        private Xl.Range SpecialCellsCatchError(Xl.Range myRange, Xl.XlCellType cellType)
+        {
+            try
+            {
+                return myRange.SpecialCells(cellType);
+            }
+            catch (System.Runtime.InteropServices.COMException ex)
+            {
+                return null;
+            }
+        }
         private void btnDeleteAll(object sender, RoutedEventArgs e)
         {
+            var links = ExternalLinkList.Items.Cast<object>();
+            DeleteExternalLink(links);
+            RefreshList();
         }
         private void btnDeleteSelected (object sender, RoutedEventArgs e)
         {
+            var links = ExternalLinkList.SelectedItems.Cast<object>();
+            DeleteExternalLink(links);
+            RefreshList();
         }
         private void OnCanResizeWindow(object sender, CanExecuteRoutedEventArgs e)
         {
@@ -118,6 +152,11 @@ namespace FAXT.ExternalLinkBreaker
         private void OnRestoreWindow(object target, ExecutedRoutedEventArgs e)
         {
             SystemCommands.RestoreWindow(this);
+        }
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            ListGrid.Width = ExternalLinkBreaker.ActualWidth * 350 / 600;
+            ButtonGrid.Width = ExternalLinkBreaker.ActualWidth * 230 / 600;
         }
     }
 }

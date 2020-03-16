@@ -109,6 +109,7 @@
             // 
             this.menuCleanup.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
             this.menuCleanup.Items.Add(this.btnExternalLink);
+            this.menuCleanup.ItemSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
             this.menuCleanup.Label = "Workbook Cleanup";
             this.menuCleanup.Name = "menuCleanup";
             this.menuCleanup.OfficeImageId = "ListSynchronize";
@@ -116,6 +117,7 @@
             // 
             // btnExternalLink
             // 
+            this.btnExternalLink.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
             this.btnExternalLink.Label = "External Link Breaker";
             this.btnExternalLink.Name = "btnExternalLink";
             this.btnExternalLink.OfficeImageId = "TextBoxLinkBreak";

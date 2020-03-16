@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FAXT.ExternalLinkBreaker"
         mc:Ignorable="d"
-        Title="External Link Breaker" Height="300" Width="600" Style="{DynamicResource MyWindowStyle}" FontSize="14">
+        Title="External Link Breaker" Name="ExternalLinkBreaker" Height="300" Width="600" Style="{DynamicResource MyWindowStyle}" FontSize="14" SizeChanged="Window_SizeChanged">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -14,13 +14,13 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <Grid HorizontalAlignment="Left" Width="350">
-            <ListBox Name="ExternalLinkList"/>
+        <Grid HorizontalAlignment="Left" Width="350" Name="ListGrid">
+            <ListBox Name="ExternalLinkList" SelectionMode="Multiple"/>
         </Grid>
-        <Grid HorizontalAlignment="Right" Width="200">
-            <Button Name="BreakAll" Content="Break All External Links" Margin="0,25,0,0" VerticalAlignment="Top" Width="150" HorizontalAlignment="Center" Style="{StaticResource MyButtonStyle}" FontSize="12" Height="25"/>
-            <Button Name="BreakSelected" Margin="0,0,0,25" VerticalAlignment="Bottom" Width="150" HorizontalAlignment="Center" Style="{StaticResource MyButtonStyle}" FontSize="12" Height="50">
-                <TextBlock TextAlignment="Center" TextWrapping="Wrap">Break Selected External Links (Hold Shift for Multiple Selection)</TextBlock>
+        <Grid HorizontalAlignment="Right" Width="230" Name="ButtonGrid">
+            <Button Name="BreakAll" Content="Break All External Links" Click="btnDeleteAll" Margin="0,25,0,0" VerticalAlignment="Top" Width="150" HorizontalAlignment="Center" Style="{StaticResource MyButtonStyle}" FontSize="12" Height="25"/>
+            <Button Name="BreakSelected" Click="btnDeleteSelected" Margin="0,0,0,25" VerticalAlignment="Bottom" Width="150" HorizontalAlignment="Center" Style="{StaticResource MyButtonStyle}" FontSize="12" Height="50">
+                <TextBlock TextAlignment="Center" TextWrapping="Wrap">Break Selected External Links (with Multiselect)</TextBlock>
             </Button>
         </Grid>
     </Grid>
