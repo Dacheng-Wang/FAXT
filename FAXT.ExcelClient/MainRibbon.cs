@@ -96,11 +96,46 @@ namespace FAXT.ExcelClient
         private void ExternalLink_Click(object sender, RibbonControlEventArgs e)
         {
             Xl.Workbook openWb = Globals.ThisAddIn.Application.ActiveWorkbook;
+            Xl.Names names = openWb.Names;
+            openWb.Application.ScreenUpdating = false;
+            openWb.Application.Calculation = Xl.XlCalculation.xlCalculationManual;
             foreach (object link in (Array)((object)openWb.LinkSources(Xl.XlLink.xlExcelLinks)))
             {
-                Console.WriteLine(link.ToString());
+                //Delete all named range with the external link in ReferTo
+                foreach (Xl.Name name in names)
+                {
+                    string formula = name.RefersTo;
+                    if (formula.Replace(@"[", "").Replace(@"]", "").Contains(link.ToString()))
+                    {
+                        name.Delete();
+                    }
+                }
+                //Delete all data validation with the external link in the formula
+                foreach (Xl.Worksheet ws in openWb.Worksheets)
+                {
+                    foreach (Xl.Range cell in ws.Cells.SpecialCells(Xl.XlCellType.xlCellTypeAllValidation))
+                    {
+                        if (cell.Validation.Formula1.Replace(@"[", "").Replace(@"]", "").Contains(link.ToString()) || cell.Validation.Formula2.Replace(@"[", "").Replace(@"]", "").Contains(link.ToString()))
+                        {
+                            cell.Validation.Delete();
+                        }
+                    }
+                    if (ws.Cells.FormatConditions.Count > 0)
+                    {
+                        for (int i = 1; i <= ws.Cells.FormatConditions.Count; i++)
+                        {
+                            Xl.FormatCondition formatCondition = ws.Cells.FormatConditions[i];
+                            if (formatCondition.Formula1.Replace(@"[", "").Replace(@"]", "").Contains(link.ToString()) || formatCondition.Formula2.Replace(@"[", "").Replace(@"]", "").Contains(link.ToString()))
+                            {
+                                formatCondition.Delete();
+                            }
+                        }
+                    }
+                }
                 openWb.BreakLink(link.ToString(), Xl.XlLinkType.xlLinkTypeExcelLinks);
             }
+            openWb.Application.ScreenUpdating = false;
+            openWb.Application.Calculation = Xl.XlCalculation.xlCalculationAutomatic;
         }
     }
 }
