@@ -116,7 +116,7 @@
             // 
             // btnExternalLink
             // 
-            this.btnExternalLink.Label = "External Link Analyzer";
+            this.btnExternalLink.Label = "External Link Breaker";
             this.btnExternalLink.Name = "btnExternalLink";
             this.btnExternalLink.OfficeImageId = "TextBoxLinkBreak";
             this.btnExternalLink.ShowImage = true;

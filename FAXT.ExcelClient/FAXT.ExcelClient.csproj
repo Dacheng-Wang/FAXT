@@ -193,6 +193,7 @@
     </Compile>
     <EmbeddedResource Include="MainRibbon.resx">
       <DependentUpon>MainRibbon.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -237,6 +238,10 @@
     <ProjectReference Include="..\FAXT.DropdownHelper\FAXT.DropdownHelper.csproj">
       <Project>{ed3ca9ed-7aa4-4669-9b79-bff7ffc27972}</Project>
       <Name>FAXT.DropdownHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FAXT.ExternalLinkBreaker\FAXT.ExternalLinkBreaker.csproj">
+      <Project>{9adba79a-3ba9-452a-b065-1a5aaeb61315}</Project>
+      <Name>FAXT.ExternalLinkBreaker</Name>
     </ProjectReference>
     <ProjectReference Include="..\FAXT.Help\FAXT.Help.csproj">
       <Project>{ed3ee163-1f41-4e03-8704-0a1e060d223f}</Project>
