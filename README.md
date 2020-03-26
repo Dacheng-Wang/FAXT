@@ -17,7 +17,7 @@ External links can be painful to deal with as they can hide in named ranges and 
 ![](Images/External%20Link%20Breaker.PNG)
 # Installation
 The toolbox supports auto-update upon the ribbon loading. To install it properly, you have to follow the steps below:
-1. Download the latest version (.zip file) from Release page
+1. Download the latest version (.zip file) from [Release](https://github.com/Dacheng-Wang/FAXT/releases) page
 2. Unzip it to any directory
 3. Right-click on "setup.exe" - Properties
 4. Open the "Digital Signatures" tab - highlight the signature - "Details"
